@@ -47,12 +47,36 @@ table {
   border-spacing: 0;
   width: 100%;
   table-layout: fixed;
+  Word-break: break-all;
 }
 table td:first-child {
    width: 3.5%;
    text-align: center;
    color: #CCC9C9;
 } 
+
+table th:first-child {
+   width: 150px;
+   text-align: center;
+   color: #CCC9C9;
+} 
+
+table th {
+    border-width: 2px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #F2F8FF;
+    background-color: #dedede;
+}
+
+table td {
+    border-width: 2px;
+    border-style: solid;
+    border-color: #F2F8FF;
+    background-color: #ffffff;
+}
+
+
 
 body {
   width: 100%;
@@ -210,7 +234,7 @@ code {
 }
 
 pre {
-  margin-bottom: 1.3em;
+  margin-bottom: 0em;
   padding: 1em 2.5%;
   background: #F2F8FF;
   border: 1px solid #EDF6FD;
