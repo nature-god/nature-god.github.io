@@ -18,11 +18,11 @@ tag: Unity Shader
 * 一个特殊的位置，即原点，它是整个坐标系的中心
 * 两条互相垂直的矢量，即X轴与Y轴，也称为该坐标的基矢量。
   
-<img src="https://raw.githubusercontent.com/nature-god/MarkdownPhotos/master/dikaer.png"/>
+<img src="https://raw.githubusercontent.com/nature-god/MarkdownPhotos/master/Blog_Shader02/dikaer.png"/>
 
 原点位置是任意的，互相垂直的矢量也是任意的，因此不同的设定就会有不同的坐标表示：
 
-<img src="https://raw.githubusercontent.com/nature-god/MarkdownPhotos/master/DiffCoordinate.png"/>
+<img src="https://raw.githubusercontent.com/nature-god/MarkdownPhotos/master/Blog_Shader02/DiffCoordinate.png"/>
 
 由于一个原点在左上，一个原点在右上，所以坐标变换计算时就可能有不同的结果。
 #### 1.2三维笛卡尔坐标系
@@ -60,5 +60,40 @@ tag: Unity Shader
 * 矩阵和矩阵的乘法
 * 特殊矩阵：对角矩阵，方块矩阵(方阵)，单位矩阵，转置矩阵，逆矩阵，正交矩阵
 这些基本概念了解之后就行了，忘记了的多baidu或是google一下。
+### 4.Hello Unity Shader
+#### 4.1一个最简单的顶点/片元着色器
+在前面我们已经看到了Unity Shader的基本结构：
+```C
+Shader "MyShaderName"{
+    Properties{
+        //属性
+    }
+    SubShader{
+        //针对显卡A的SubShader
+        
+        Pass{
+            //设置渲染状态与标签
+            //开始CG代码片段
+            CGPROGRAM
+            //该代码片段的编译指令
+            #pragma vertex vert
+            #pragma fragment frag
+            //CG代码
+            ENDCG
+            //其他设置
+        }
+        //其他的Pass
+    }
+    SubShader{
+        //针对显卡B的SubShader
+    }
+    //默认回掉的Unity Shader
+    Fallback "VertexLit"
+}
+```
+OK，现在我们进入Unity中进行实战吧！我的Unity版本：Unity 2018.2.4f1，基本各版本问题不大，但如果遇到问题，请检查下是否和Unity版本相关。
 
-To Be Continued
+新建一个场景，并去掉天空盒(skybox)：删除场景中的direct light，然后选择坐上tool bar里面:Window->Rendering->LightingSetting，将Skybox material设置为none:
+
+<img src="https://raw.githubusercontent.com/nature-god/MarkdownPhotos/master/Blog_Shader02/unityscreen.png"/>
+

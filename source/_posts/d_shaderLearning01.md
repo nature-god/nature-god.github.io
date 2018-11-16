@@ -33,7 +33,7 @@ Unity使用Materials，Shaders和Textures来进行渲染，它们之间联系紧
 > 3. 把材质赋给要渲染的对象(GameObject)
 
 在Unity中，上诉操作都可以在Unity菜单栏中选择Asset->Create->Shader/Material等实现。
-<div style="text-align:left"><img src="https://raw.githubusercontent.com/nature-god/MarkdownPhotos/master/shaderCapture.png"/></div>
+<div style="text-align:left"><img src="https://raw.githubusercontent.com/nature-god/MarkdownPhotos/master/Blog_Shader01/shaderCapture.png"/></div>
 
 其中有四种模板的Unity Shader供我们选择:
 >* Standard Surface Shader：产生一个包含了标准光照模型的表面着色器模板
@@ -192,7 +192,7 @@ Shader "Custom/NewSurfaceShader" {
 }
 ```
 <br/>在Unity编辑器中如下图所示:
-<div><img src="https://raw.githubusercontent.com/nature-god/MarkdownPhotos/master/Material_Shader_Show.png"/></div>
+<div><img src="https://raw.githubusercontent.com/nature-god/MarkdownPhotos/master/Blog_Shader01/Material_Shader_Show.png"/></div>
 
 此外一些其他类型的变量若是想显示出来，Unity允许我们重载默认的材质编辑面板，流程与Customer Editor那套自定义Inspector的方式类似，只不过现在是Shader材质面板了，有兴趣了解的同学可以参考官方[Custome Shader GUI](http://docs.unity3d.com/Manual/SL-CustomShaderGUI)。
 #### 3.3 SubShader
