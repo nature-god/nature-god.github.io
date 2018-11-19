@@ -93,7 +93,59 @@ Shader "MyShaderName"{
 ```
 OK，现在我们进入Unity中进行实战吧！我的Unity版本：Unity 2018.2.4f1，基本各版本问题不大，但如果遇到问题，请检查下是否和Unity版本相关。
 
-新建一个场景，并去掉天空盒(skybox)：删除场景中的direct light，然后选择坐上tool bar里面:Window->Rendering->LightingSetting，将Skybox material设置为none:
+1. 新建一个场景，并去掉天空盒(skybox)：删除场景中的direct light，然后选择坐上tool bar里面:Window->Rendering->LightingSetting，将Skybox material设置为none:
 
 <img src="https://raw.githubusercontent.com/nature-god/MarkdownPhotos/master/Blog_Shader02/unityscreen.png"/>
 
+2. 新建一个Unity Shader(Standrad Surface Shader)，命名为HelloShader。
+3. 新建一个Material，命名为HelloMaterial，并把第二步中新建的Unity Shader赋给它。
+4. 新建一个球体，第三步中的Material赋给它。
+5. 在HelloShader中，删除所有默认初始代码，写入以下代码
+```C
+Shader "HelloShader"{
+	SubShader{
+		Pass{
+			CGPROGRAM
+
+			#pragma vertex vert
+			#pragma fragment frag
+
+			float4 vert(float4 v : POSITION) : SV_POSITION{
+				return UnityObjectToClipPos (v);
+			}
+
+			fixed4 frag() : SV_Target {
+				return fixed4(1.0,1.0,1.0,1.0);
+			}
+			ENDCG
+		}
+	}
+}
+```
+
+<img src="https://raw.githubusercontent.com/nature-god/MarkdownPhotos/master/Blog_Shader02/ShaderAndMaterial.png"/>
+
+<img src="https://raw.githubusercontent.com/nature-god/MarkdownPhotos/master/Blog_Shader02/HelloShader.png"/>
+
+Ok，现在我们来详细对其进行剖析：
+>Shader "HelloShader"
+
+此句十分简单，即是对我们自定义的Shader取名，支持"xx/xx/xx"的形式，良好的命名习惯有利于我们快速找到目标Shader。
+接下来是一些基本的结构，包括SubShader, Pass块等，此处代码无Properties。然后就是最为关键的CG代码块了。
+>#pragma vertex vert
+>#pragma fragment frag
+
+它们告诉Unity，哪个函数包含了顶点着色器代码，哪个函数包含了片元着色器代码。通用形式如下：
+>pragma vertex name
+>pragma fragment name
+
+name就是我们所指定的函数名，但这两个函数的名字不一定是vert和frag，但一般多用这两个，因为十分直观。
+```C
+float4 vert(float4 v : POSITION) : SV_POSITION{
+    return mul (UNITY_MATRIX_MVP, v);    
+}
+```
+这就是vert函数了，即我们所使用的顶点着色器代码，它是逐顶点执行的。vert函数的输入v包含了这个顶点的位置——这是通过POSITION语义指定的。
+>语义，是两个处理阶段（顶点程序、片段程序）之间的输入 / 输出数据和寄存器之间的桥梁，同时语义通常也表示数据的含义，如 POSITION 一般表示参数种存放的数据是顶点位置。
+
+vert函数的返回值是一个float4类型的变量，它是该顶点在裁剪空间中的位置。POSITION和SV_POSITION都是CG/HLSL中的语义(se'mantics)，这些语义将会告诉系统用户哪些需要输入值，以及用户的输出是什么。如此处POSITION将告诉Unity，把模型的顶点坐标填充到输入参数v中，SV_POSITION将告诉Unity，顶点着色器的输出是输出是裁剪空间中的顶点坐标。
