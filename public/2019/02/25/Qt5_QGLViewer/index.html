@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="z">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>Qt5 QtCreator QGLViewer | nature</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="扬帆起航">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Qt5 QtCreator QGLViewer | nature">
+    <meta name="twitter:description" content="扬帆起航">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Qt5 QtCreator QGLViewer | nature">
+    <meta property="og:description" content="扬帆起航">
+
+    
+    <meta name="author" content="nature">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+    <link rel="icon" href="/images/avatar.png">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+
+    <link rel="canonical" href="http://yoursite.com/2019/02/25/Qt5_QGLViewer/"/>
+
+                 
+</head>
+
+<body class="home-template no-js">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/kunka.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 nature 的主页"><img src="/images/avatar.jpg" width="80" alt="nature logo" class="panel-cover__logo logo"></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for nature">nature</a></h1>
+        
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">心有猛虎，细嗅蔷薇</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="Visit the blog" class="blog-button">Blog</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+  <li class="navigation__item">
+    <a href="https://www.weibo.com/6018345367" title="Weibo" target="_blank">
+      <i class="social fa fa-weibo"></i>
+      <span class="label">Weibo</span>
+    </a>
+  </li> 
+
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/nature-god" title="GitHub" target="_blank">
+      <i class="social fa fa-github"></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+   
+<!-- Unity-Connect -->
+   
+    <li class="navigation__item">
+      <a href="https://connect.unity.com/u/5bcb96ceedbc2a0021050023" title="unity-connect" target="_blank">
+        <img src="/images/Unity.png" width="24" height="4%" style="position:relative;top:5px;">
+        <span class="label">unity-connect</span>
+      </a>
+    </li>
+  
+
+  <!-- Zhihu -->
+  
+    <li class="navigation__item">
+      <a href="https://www.zhihu.com/people/biubiu-8-74" title="zhihu" target="_blank">
+        <img src="/images/zhihu.png" width="24" height="4%" style="position:relative;top:5px;">
+        <span class="label">zhihu</span>
+      </a>
+    </li>
+  
+
+
+
+<!-- Stack Overflow -->
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  <li class="navigation__item">
+    <a href="https://twitter.com/nature_Druid" title="Twitter" target="_blank">
+      <i class="social fa fa-twitter"></i>
+      <span class="label">Twitter</span>
+    </a>
+  </li>
+
+  
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-blue"></div>
+  </div> 
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2019-02-24T16:00:00.000Z" class="post-list__meta--date date">2019-02-25</time> &#8226; <span class="post-meta__tags tags">于 
+  <a class="tag-link" href="/tags/Qt/">Qt</a>
+ </span>
+      <span class="page-pv">
+       Read <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      </span> 
+   
+    </div>
+    <h1 class="post-title">Qt5 QtCreator QGLViewer</h1>
+  </header>
+
+  <section class="post">
+    <p>毕设设计可能要做一个与雷达可视化相关的项目，学长给了我一份之前的Qt的项目来看看，因为以前一直只听说过Qt，其怎么怎么样，怎么怎么好用，但实际上却从来都并未使用过。因此正好开坑记录一下Qt的学习。</p>
+<h3 id="Qt"><a href="#Qt" class="headerlink" title="Qt"></a>Qt</h3><p>Qt，发音同“cute”，是一个跨平台的C++应用程序开发框架。广泛用于开发GUI程序，这种情况下又被称为部件工具箱(widget toolkits)。同时它也可以用于开发非GUI程序，比如控制台工具和服务器。Qt使用于OPIE，Skype，VLC media player，Adobe Photoshop Elements，VirtualBox与Mathematica以及被Autodesk，欧洲空间局，梦工厂，Google，HP，KDE，卢卡斯，西门子公司等所使用。</p>
+<p>它是Digia公司的产品，使用标准C++和特殊的代码生成扩展(被称为元对象编译器)以及一些宏。通过语言绑定，其他的编程语言也可以使用Qt。</p>
+<p>Qt是自由开放源码的软件，在GNU宽通用公共许可证（LGPL）条款下发布。所有版本都支持广泛的编译器，包括GCC的C++编译器与Visual Studio。</p>
+<h3 id="Qt的安装"><a href="#Qt的安装" class="headerlink" title="Qt的安装"></a>Qt的安装</h3><p>前往<a href="https://www.qt.io/cn" target="_blank" rel="noopener">Qt官网</a>下载Qt，注册一个账号，然后下载下来一个在线安装程序，点击进入安装界面</p>
+<p><img src="https://raw.githubusercontent.com/nature-god/MarkdownPhotos/master/Qt_Learn/02.png"></p>
+<p>安装路径等不用说(注意不能有中文路径)，默认选择安装Qt Creator，比较重要的是选择组件这一步：</p>
+<p><img src="https://raw.githubusercontent.com/nature-god/MarkdownPhotos/master/Qt_install.png"> </p>
+<p>(之前我就点了个默认就没管了，然后在Qt Creator里面死活找不到Kit)，这里我选的Qt5的版本，Qt4与Qt5之间差别还是比较大的，但是既然是学习，肯定选择最新的版本了（我选的Qt 5.12.0)。<img src="https://raw.githubusercontent.com/nature-god/MarkdownPhotos/master/Qt_Learn/01.png"></p>
+<p>然后是开发编译工具：</p>
+<p><img src="https://raw.githubusercontent.com/nature-god/MarkdownPhotos/master/Qt_Learn/03.png"></p>
+<p>然后静待安装完成。</p>
+<h3 id="QGLViewer"><a href="#QGLViewer" class="headerlink" title="QGLViewer"></a>QGLViewer</h3><p><a href="http://libqglviewer.com/" target="_blank" rel="noopener">libQGLViewer</a>是一个Qt的C++库，用于简化创建OpenGl 3D图像。它提供了一些非常典型的3D视图功能，包括像用鼠标移动相机，坐标轴显示，物体选择等功能。基于Qt工具包，它支持所有平台，其有商业许可，但也可用作开源软件开发。</p>
+<p>QGLViewer在上面的官网就可以下到了，官网内也详细写明了各个不同的平台该如何进行操作。我是Windows，所以下载好QGLViewer的项目后，解压后打开QGLVIewer/QGLViewer.pro项目文件(使用Qt Creator，其他工具方式详见官网)，然后点击左下角那个锤子进行构建。一般可以正确运行，如果失败的话，检查一下自己之前安装的kit是否错误，在Qt Creator上面菜单选择：工具-&gt;选项，打开后选择Kit，看是否有错误。</p>
+<p>在运行完毕之后，会得到两个dll文件：QGLViewer2.dll和QGLViewer2.dll。将其拷贝至C:\Windows\System32文件内，或是在要使用的项目路径下直接添加这两个dll。</p>
+<p>此时可以尝试跑一下example，就在QGLViewer文件的example文件内，可以看到QGLViewer的一些比较基本的功能演示。</p>
+<p>之后调用该库时，也可以在.pro项目文件中添加如下设置：</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&gt; TARGET = myViewer</span><br><span class="line">&gt; CONFIG *= qt opengl release</span><br><span class="line">&gt; QT *= opengl xml</span><br><span class="line">&gt; </span><br><span class="line">&gt; HEADERS = myViewer.h</span><br><span class="line">&gt; SOURCES = myViewer.cpp main.cpp</span><br><span class="line">&gt; </span><br><span class="line">&gt; # Windows</span><br><span class="line">&gt; INCLUDEPATH *= C:/Users/login/Documents/libQGLViewer-2.7.1</span><br><span class="line">&gt; LIBS *= -LC:/Users/login/Documents/libQGLViewer-2.7.1/QGLViewer -lQGLViewer2</span><br><span class="line">&gt; </span><br><span class="line">&gt; # Linux</span><br><span class="line">&gt; INCLUDEPATH *= /home/login/Documents/libQGLViewer-2.7.1</span><br><span class="line">&gt; LIBS *= -L/home/login/libQGLViewer-2.7.1/QGLViewer -lQGLViewer</span><br><span class="line">&gt; </span><br><span class="line">&gt; # Mac </span><br><span class="line">&gt; INCLUDEPATH *= /Users/login/Documents/libQGLViewer-2.7.1</span><br><span class="line">&gt; LIBS *= -F/Users/login/Library/Frameworks -framework QGLViewer</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>但是由于Qt5内部封装了Opengl的一些函数，如果你自己电脑之前也装过Opengl的相关东西的话，可能导致编译后链接库失败，此时可以在.pro文件中添加：</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;win32-g++ &#123;</span><br><span class="line">&gt;    LIBS += -lopengl32</span><br><span class="line">&gt;&#125;</span><br><span class="line">&gt;win32-msvc*&#123;</span><br><span class="line">&gt;    LIBS += opengl32.lib</span><br><span class="line">&gt;&#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>即可编译成功。</p>
+
+  </section>
+
+</article>
+
+<section class="read-more">
+           
+    
+        
+        
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">Older Post</span>
+                <h2 class="post-list__post-title post-title"><a href="/2018/12/20/i_2048Game/" title="从零开始的2048">从零开始的2048</a></h2>
+                <p class="excerpt">
+                
+                2048是一个非常有意思的小游戏，它基本不需要美工，又有一定的可玩性，很适合练练手。
+游戏玩法与规则
+2048的玩法很简单，它由一个4X4的方块阵列所组成，玩家可以通过”上下左右”键进行格子的移动。每次操作会让所有的格子都向”上/下/左/右”进行移动，相同数字的格子会合并成为一个新的格子，数字为合并
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2018-12-19T16:00:00.000Z" class="post-list__meta--date date">2018-12-20</time> &#8226; <span class="post-list__meta--tags tags">于 
+  <a class="tag-link" href="/tags/Unity/">Unity</a>
+</span><a class="btn-border-small" href="/2018/12/20/i_2048Game/">继续阅读</a></div>
+                       
+            </div>
+        
+     
+   
+   
+  
+</section>
+
+  
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        &copy; 2019 nature
+       
+    </span>
+    <span class="footer__copyright">
+            
+         </span>
+       
+    
+    
+</footer>
+
+
+        </div>
+    </div>
+
+     
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-78918255-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?9cdad07c755fa23f6aced510c6760e87";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/poi.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>
