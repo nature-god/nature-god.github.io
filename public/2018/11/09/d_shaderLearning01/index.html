@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="z">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>Unity Shader入门(一) | nature</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="扬帆起航">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Unity Shader入门(一) | nature">
+    <meta name="twitter:description" content="扬帆起航">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Unity Shader入门(一) | nature">
+    <meta property="og:description" content="扬帆起航">
+
+    
+    <meta name="author" content="nature">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+    <link rel="icon" href="/images/avatar.png">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+
+    <link rel="canonical" href="http://yoursite.com/2018/11/09/d_shaderLearning01/"/>
+
+                 
+</head>
+
+<body class="home-template no-js">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/kunka.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 nature 的主页"><img src="/images/avatar.jpg" width="80" alt="nature logo" class="panel-cover__logo logo"></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for nature">nature</a></h1>
+        
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">心有猛虎，细嗅蔷薇</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="Visit the blog" class="blog-button">Blog</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+  <li class="navigation__item">
+    <a href="https://www.weibo.com/6018345367" title="Weibo" target="_blank">
+      <i class="social fa fa-weibo"></i>
+      <span class="label">Weibo</span>
+    </a>
+  </li> 
+
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/nature-god" title="GitHub" target="_blank">
+      <i class="social fa fa-github"></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+   
+<!-- Unity-Connect -->
+   
+    <li class="navigation__item">
+      <a href="https://connect.unity.com/u/5bcb96ceedbc2a0021050023" title="unity-connect" target="_blank">
+        <img src="/images/Unity.png" width="24" height="4%" style="position:relative;top:5px;">
+        <span class="label">unity-connect</span>
+      </a>
+    </li>
+  
+
+  <!-- Zhihu -->
+  
+    <li class="navigation__item">
+      <a href="https://www.zhihu.com/people/biubiu-8-74" title="zhihu" target="_blank">
+        <img src="/images/zhihu.png" width="24" height="4%" style="position:relative;top:5px;">
+        <span class="label">zhihu</span>
+      </a>
+    </li>
+  
+
+
+
+<!-- Stack Overflow -->
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  <li class="navigation__item">
+    <a href="https://twitter.com/nature_Druid" title="Twitter" target="_blank">
+      <i class="social fa fa-twitter"></i>
+      <span class="label">Twitter</span>
+    </a>
+  </li>
+
+  
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-blue"></div>
+  </div> 
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2018-11-08T16:00:00.000Z" class="post-list__meta--date date">2018-11-09</time> &#8226; <span class="post-meta__tags tags">于 
+  <a class="tag-link" href="/tags/Unity-Shader/">Unity Shader</a>
+ </span>
+      <span class="page-pv">
+       Read <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      </span> 
+   
+    </div>
+    <h1 class="post-title">Unity Shader入门(一)</h1>
+  </header>
+
+  <section class="post">
+    <p>这是自己开的第一篇技术帖，主要讲述下基本的shader入门知识。预计在这个寒假结束之前写完吧。<br><br>参考书籍：《Unity Shader入门精要》<br><br>Unity版本: Unity 2018.2.4f1<br><br>有人说过，程序员的三大浪漫是：编译原理，操作系统和计算机图形学。诚然，我认为这几门技术都是难度比较大的，或许再加上计算机网络与数据库系统？游戏中的美术是无比重要的，没有好的美术，纵使你的玩法再完美，受众玩家都不会多——毕竟控制台的游戏感官实在要差很多。美术只是贴图，而那些光照，反射与现实下的物理模拟，则是我们程序员的事情，shader便是解决这些问题的工具(当然，美术画出这些真实场景的情况也有——部分精致的动漫中，画师细节把握实在到位，观众往往会发出”啊，这光，啊这水”的惊讶感叹)，但是对实时要求极高的游戏而言，画师的画画速度则是远远不够了。</p>
+<h3 id="1-渲染流水线"><a href="#1-渲染流水线" class="headerlink" title="1.渲染流水线"></a>1.渲染流水线</h3><p>渲染，顾名思义，将东西(我们定义好的信息)画(渲染)在纸(屏幕)上，这一部分要用到很多的数学计算，由CPU和GPU共同完成。<br>《Render-Time Rendering》中将渲染流程分为三个阶段：应用阶段(Application Stage),几何阶段(Geometry Stage)，光栅化阶段(Rasterizer Stage)。<br>简单而言:</p>
+<blockquote>
+<ul>
+<li>应用阶段：准备好要场景数据，包括摄像机位置，视锥体，光源等信息。就像是画画，先想一下自己想要画什么东西。(大脑(CPU)负责)</li>
+<li>几何阶段：应用阶段告诉了我们场景中有啥，而这些基本图形是点，线，三角形这些东西构成，几何阶段便是画出这些东西，但是没有颜色和其他信息，就像是一幅画的线稿一样。(速写笔(GPU)负责))</li>
+<li>光栅化阶段：根据上个几何阶段传递过来的数据，来产生屏幕上的像素，并最终渲染出最终的图像，就像画画，线稿画好了，根据我们最开始设定好的颜色，考虑下光照之类的信息，用我们的画笔给这副画上好色。(画笔(GPU)负责))</li>
+</ul>
+</blockquote>
+<p>此外，我们场景中的东西可能很多，但能看到的只有摄像机视野范围那一块，因此，运用”裁剪”技术剔除掉那些不在视野范围内的物体。此外，我们如何把一个现实中的物体画到纸上呢？我们都知道透视几何画3D物体，像我们学过的立体几何那些。因此计算机渲染也需要这么个操作，将世界坐标映射到屏幕之上：</p>
+<blockquote>
+<p>屏幕映射(Screen Mapping)的任务是把每个物体的x和y坐标转换到屏幕坐标系(Screen Coordinate)下。屏幕坐标系是一个二维坐标系，与显示画面的分辨率有很大关系。物体的Z坐标不做处理，其代表深度值。</p>
+</blockquote>
+<p>映射就涉及到坐标系的转换了，这部分是基本的数学操作。此外，开发者直接访问GPU是很麻烦的事情，因此使用一个中间的图像编程接口是十分有必要的，由于使用的屏幕坐标系可能不同，造成这部分的数学操作也不一样：</p>
+<blockquote>
+<ul>
+<li>OpenGL</li>
+<li>DirectX</li>
+</ul>
+</blockquote>
+<h3 id="2-Unity-Shader-与-ShaderLab"><a href="#2-Unity-Shader-与-ShaderLab" class="headerlink" title="2.Unity Shader 与 ShaderLab"></a>2.Unity Shader 与 ShaderLab</h3><p>Unity使用Materials，Shaders和Textures来进行渲染，它们之间联系紧密，最终渲染出美轮美奂的画面。</p>
+<blockquote>
+<ul>
+<li>Material: Material通过它包含的贴图，布局与颜色等信息来定义一个表面应该如何被渲染。一个Material根据其使用的shader来使用不同的可选项。</li>
+<li>Shader：Shader是一种基于光照输入和Material配置来进行数学运算并计算出每个像素点(pixel)渲染颜色的脚本。</li>
+<li>Texture: Texture是一种位图图像。一个Material包含对textures的引用，所以Material的Shader就可以使用Texture去计算一个物体(GameObject)的表面颜色了。除了游戏对象表面的基本颜色(albedo)外，纹理还可以表示材质表面的许多其他方面，如反射率，粗糙度等等。</li>
+</ul>
+</blockquote>
+<p>一个Material对应于一个Shader，这个Shader决定了这个Material种哪些可用的选项。一个Shader则对应了一个或多个Texture，在Unity的Inspector面板你可以直接拖拽Texture资源给Shader。总体而言，在Unity中，常见的使用流程是：</p>
+<blockquote>
+<ol>
+<li>创建一个Material  </li>
+<li>创建一个Unity Shader，并把它赋给上一步的Material  </li>
+<li>把材质赋给要渲染的对象(GameObject)</li>
+</ol>
+</blockquote>
+<p>在Unity中，上诉操作都可以在Unity菜单栏中选择Asset-&gt;Create-&gt;Shader/Material等实现。</p>
+<div style="text-align:left"><img src="https://raw.githubusercontent.com/nature-god/MarkdownPhotos/master/Blog_Shader01/shaderCapture.png"></div>
+
+<p>其中有四种模板的Unity Shader供我们选择:</p>
+<blockquote>
+<ul>
+<li>Standard Surface Shader：产生一个包含了标准光照模型的表面着色器模板</li>
+<li>Unlit Shader：产生一个不含光照效果(但含雾效果)的基本的顶点/片元着色器</li>
+<li>Image Effect Shader：提供一个屏幕后处理效果的基本模板</li>
+<li>Computer Shader：特殊Shader文件，旨在利用GPU的并行性来计算一些与常规渲染流水线无关的计算</li>
+</ul>
+</blockquote>
+<p>创建好Shader文件后，我们就可以开始我们的Unity Shader编程工作了。在Unity中，所有的Unity Shader都是由ShaderLib来编写的:</p>
+<blockquote>
+<p>ShaderLab是Unity提供的编写Unity Shader的一种说明性语言。它使用一些嵌套在花括号内部的语义(syntax)来描述一个Unity Shader文件的结构。<br>一个Unity Shader的基础结构如下所示：</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Shader <span class="string">"ShaderName"</span>&#123;</span><br><span class="line">    Properties &#123;</span><br><span class="line">        <span class="comment">//Shader Properties</span></span><br><span class="line">    &#125;</span><br><span class="line">    SubShader &#123;</span><br><span class="line">        <span class="comment">//Subshader A</span></span><br><span class="line">    &#125;</span><br><span class="line">    SubShader &#123;</span><br><span class="line">        <span class="comment">//Subshader B</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Unity在背后会根据所使用的平台来把这些结构编译为真正的代码和Shader文件，而开发者只需要和Unity Shader打交道即可，这就像我们使用C/C++等编程语言，而编译器会编译为机器语言。在这里，我们使用Unity Shader进行编程，Unity将其翻译为真正的Shader文件。</p>
+<p>在没有Unity这类编辑器的情况下，如果我们想要对某个模型设置渲染状态，需要十分复杂的代码，有了解过OpenGL的同学可能会有感受：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Initialization</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//初始化渲染设置</span></span><br><span class="line">    <span class="comment">//从硬盘加载顶点着色器代码</span></span><br><span class="line">    <span class="comment">//从硬盘加载片元着色器代码</span></span><br><span class="line">    <span class="comment">//把顶点着色器加载到GPU</span></span><br><span class="line">    <span class="comment">//把片元着色器加载到GPU</span></span><br><span class="line">    <span class="built_in">string</span> vertexShaderCode = LoadShaderFromFile(VertexShader.shader);</span><br><span class="line">    <span class="built_in">string</span> fragmentShaderCode = LoadShaderFromFile(FragmentShader.shader);</span><br><span class="line">    LoadVertexShaderFromString(vertextShaderCode);</span><br><span class="line">    LoadFragmentShaderFromString(fragmentShaderCode);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置模型顶点坐标</span></span><br><span class="line">    <span class="comment">//加载纹理图片</span></span><br><span class="line">    <span class="comment">//加载预处理的变换矩阵</span></span><br><span class="line">    SetVertexShaderProperty(<span class="string">"vertexPosition"</span>,vertices);</span><br><span class="line">    SetVertexShaderProperty(<span class="string">"MainTex"</span>,someTexture);</span><br><span class="line">    SetVertexShaderProperty(<span class="string">"MVP"</span>,MVP);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//关闭混合</span></span><br><span class="line">    Disable(Blend);</span><br><span class="line">    <span class="comment">//设置深度测试</span></span><br><span class="line">    Enable(ZTest);</span><br><span class="line">    SetZTestFunction(LessOrEqual);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//其他设置</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//每一帧进行渲染</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">OnRendering</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    DrawCall();</span><br><span class="line">    <span class="comment">//其他渲染设置</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上诉是渲染的流程，一般都用C/C++实现，而真正的shader文件则像下面样子:</p>
+<p>顶点着色器 VertexShader.shader<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//输入:顶点位置，纹理，MVP变换矩阵</span></span><br><span class="line">in float3 vertexPosition;</span><br><span class="line">in sample2D MainTex;</span><br><span class="line">in Matrix4x4 MVP;</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出:顶点经过MVP变换后的位置</span></span><br><span class="line">out float4 position;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    position = MVP * vertexPosition;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>片元着色器 FragmentShader.shader<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//输入:VertexShader输出的position,光栅化程序插值后的position</span></span><br><span class="line">in float4 position;</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出:片元颜色值</span></span><br><span class="line">out float4 fragColor;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//片元设置为白色</span></span><br><span class="line">    fragColor = float4(<span class="number">1.0</span>,<span class="number">1.0</span>,<span class="number">1.0</span>,<span class="number">1.0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这仅仅是超级简化版本了，除去许多冗长的函数名(函数功能还是很清晰的)之外，执行顺序，渲染数目的增多会让过程变得更加负责。幸运的是，使用Unity shader，我们便可以十分简单的实现上述的所有步骤了——这也就是抽象的好处：”计算机中的任何问题都可以增加一层抽象来解决”。</p>
+<p>从设计上而言，ShaderLab类似于CgFX和Direct3D Effects(.FX)语言。接下来，我们简要学习一下Unity Shader的基本结构，写出个”Hello Shader”来吧。</p>
+<h3 id="3-Unity-Shader-Structure"><a href="#3-Unity-Shader-Structure" class="headerlink" title="3.Unity Shader Structure"></a>3.Unity Shader Structure</h3><h4 id="3-1-Shader-Name"><a href="#3-1-Shader-Name" class="headerlink" title="3.1 Shader Name"></a>3.1 Shader Name</h4><p>就和所有的编程一样，首先我们要为Unity Shader文件中定义的Shader取一个名字：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Shader &quot;Customer/MyShader&quot;</span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样，当Material需要使用该shader时，就可以在下拉列表内找到。</p>
+<h4 id="3-2-Properties"><a href="#3-2-Properties" class="headerlink" title="3.2 Properties"></a>3.2 Properties</h4><p>Properties语义块包含了许多的属性(property)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Properties</span><br><span class="line">&#123;</span><br><span class="line">    Name (&quot;display name&quot;, PropertyType) = DefaultValue</span><br><span class="line">    Name (&quot;display name&quot;, PropertyType) = DefaultValue</span><br><span class="line">    //更多属性</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>声明这些属性就像声明一个Public的变量一样，我们可以在材质面板中很方便地调整各种材质属性等。<br><br>Properties 中字段含义:</p>
+<ul>
+<li>Name 是我们在shader中要访问该变量时使用的名字，约定俗成一般以下划线开始</li>
+<li>display name 是出现在材质面板上的名字</li>
+<li>PropertyType 是属性的类型</li>
+<li>DefaultValue 是属性默认值</li>
+</ul>
+<p>Properties所支持的PropertyType:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">属性类型</th>
+<th style="text-align:left">默认值的定义语法</th>
+<th style="text-align:left">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Int</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">_Int(“Int”,Int)=2</td>
+</tr>
+<tr>
+<td style="text-align:left">Float</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">_Float(“Float”,Float)=1.5</td>
+</tr>
+<tr>
+<td style="text-align:left">Range(min,max)</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">_Range(“Range”,Range(0.0,5.0))=3.0</td>
+</tr>
+<tr>
+<td style="text-align:left">Color</td>
+<td style="text-align:left">(number,number,number,number)</td>
+<td style="text-align:left">_Color(“Color”,Color)=(1,1,1,1)</td>
+</tr>
+<tr>
+<td style="text-align:left">Vector</td>
+<td style="text-align:left">(number,number,number,number)</td>
+<td style="text-align:left">_Vector(“Vector”,Vector)=(2,3,6,1)</td>
+</tr>
+<tr>
+<td style="text-align:left">2D</td>
+<td style="text-align:left">“defaulttexture”{}</td>
+<td style="text-align:left">_2d(“2D”,2D)=””{}</td>
+</tr>
+<tr>
+<td style="text-align:left">Cube</td>
+<td style="text-align:left">“defaulttexture”{}</td>
+<td style="text-align:left">_Cube(“Cube”,Cube)=”white”{}</td>
+</tr>
+<tr>
+<td style="text-align:left">3D</td>
+<td style="text-align:left">“defaulttexture”{}</td>
+<td style="text-align:left">_3D(“3D”,3D)=”black”{}</td>
+</tr>
+</tbody>
+</table>
+<p><br>对于Int,Float,Range这些属性，其默认值就是一个单独的数字<br><br>对于Color,Vector这些属性，默认值是一个四维向量<br><br>对于2D,Cube,3D这些属性，由一个字符串加{}组成，前面字符串要么为空，要么是内置的纹理名称，如”whit”,”black”,”gray”或”bump”这些，{}中指定一些纹理属性<br><br>最后我们可以得到一个超级简单的”Hello Shader”的例子：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Shader <span class="string">"Custom/NewSurfaceShader"</span> &#123;</span><br><span class="line">    Properties &#123;</span><br><span class="line">        _Int(<span class="string">"Int"</span>,Int) = <span class="number">2</span></span><br><span class="line">        _Float(<span class="string">"Float"</span>,Float) = <span class="number">1.5</span></span><br><span class="line">        _Range(<span class="string">"Range"</span>,Range(<span class="number">0.0</span>,<span class="number">5.0</span>)) = <span class="number">1.5</span></span><br><span class="line">        _Color(<span class="string">"Color"</span>, Color) = (<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">        _Vector(<span class="string">"Vector"</span>,Vector) = (<span class="number">2</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">1</span>)</span><br><span class="line">        _2D(<span class="string">"2D"</span>,<span class="number">2</span>D)=<span class="string">""</span>&#123;&#125;</span><br><span class="line">        _Cube(<span class="string">"Cuben"</span>,Cube)=<span class="string">"White"</span>&#123;&#125;</span><br><span class="line">        _3D(<span class="string">"3D"</span>,<span class="number">3</span>D)=<span class="string">"black"</span>&#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    FallBack <span class="string">"Diffuse"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><br>在Unity编辑器中如下图所示:</p>
+<div><img src="https://raw.githubusercontent.com/nature-god/MarkdownPhotos/master/Blog_Shader01/Material_Shader_Show.png"></div>
+
+<p>此外一些其他类型的变量若是想显示出来，Unity允许我们重载默认的材质编辑面板，流程与Customer Editor那套自定义Inspector的方式类似，只不过现在是Shader材质面板了，有兴趣了解的同学可以参考官方<a href="http://docs.unity3d.com/Manual/SL-CustomShaderGUI" target="_blank" rel="noopener">Custome Shader GUI</a>。</p>
+<h4 id="3-3-SubShader"><a href="#3-3-SubShader" class="headerlink" title="3.3 SubShader"></a>3.3 SubShader</h4><blockquote>
+<p>每一个Unity Shader文件可以包含多个SubShader语义块，但至少要有一个。当Unity需要运行这个Unity Shader时，会依次扫描所有的SubShader，然后选择第一个可以在目标平台运行的SubShader。如果都不支持的话，会使用FallBack语义所指定的Unity Shader。</p>
+</blockquote>
+<p>之所这么设计的原因，是因为用户的显卡能力不同，为提供更加流畅与精美的画面，对高性能显卡的用户就是用较高计算复杂度的着色器，低性能的就使用较低计算复杂度的着色器。</p>
+<p>SubShader语义块形式如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">SubShader &#123;</span><br><span class="line">    <span class="comment">//可选</span></span><br><span class="line">    [Tags]</span><br><span class="line"></span><br><span class="line">    <span class="comment">//可选</span></span><br><span class="line">    [RenderSetup]</span><br><span class="line"></span><br><span class="line">    Pass&#123;&#125;</span><br><span class="line">    <span class="comment">//other passes</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>字段描述：</p>
+<ul>
+<li>Pass: 每个Pass定义了一次完整的渲染流程,但如果Pass数量过多会造成渲染性能下降</li>
+<li>RenderSetup: 渲染状态设置指令，可以设置显卡的各种状态，例如是否开启混合/深度测试等，设置之后会作用于所有的Pass块，常见RenderSetup设置见下表。</li>
+<li>Tags: 标签(tags)时一个键值对，它的键和值都是字符串类型。常见Tags支持类型见下表。</li>
+</ul>
+<p>常见的RenderSetup设置选项：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">状态名称</th>
+<th style="text-align:left">设置指令</th>
+<th style="text-align:left">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Cull</td>
+<td style="text-align:left">Cull Back/Font/Off</td>
+<td style="text-align:left">设置剔除模式:剔除背面/正面/关闭剔除</td>
+</tr>
+<tr>
+<td style="text-align:left">ZTest</td>
+<td style="text-align:left">ZTest Less Greater/LEqual/GEqual/Equal/NotEqual/Always</td>
+<td style="text-align:left">设置深度剔除时使用的函数</td>
+</tr>
+<tr>
+<td style="text-align:left">ZWrite</td>
+<td style="text-align:left">ZWrite On/Off</td>
+<td style="text-align:left">开启/关闭深度写入</td>
+</tr>
+<tr>
+<td style="text-align:left">Blend</td>
+<td style="text-align:left">Blend SrcFactor DstFactor</td>
+<td style="text-align:left">开启并设置混合模式</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>当在SubShader中设置了上述渲染状态时，将会应用到所有的Pass上去。</p>
+</blockquote>
+<p>Tags支持类型</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">标签类别</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Queue</td>
+<td style="text-align:left">控制渲染顺序，可以指定该物体属于哪个渲染队列，通过这种方式可以保证所有透明物体都可以在不透明物体之后被渲染</td>
+<td style="text-align:left">Tags{“Queue”=”Transparent”}</td>
+</tr>
+<tr>
+<td style="text-align:left">RenderType</td>
+<td style="text-align:left">对着色器进行分类，例如这是个不透明的着色器，或是一个透明的着色器，可以用于着色器替换功能(Shader Replacement)</td>
+<td style="text-align:left">Tags{“RenderType”=”Opaque”}</td>
+</tr>
+<tr>
+<td style="text-align:left">DisableBatching</td>
+<td style="text-align:left">是否对该SubShader使用批处理</td>
+<td style="text-align:left">Tags{“DisableBatching”=”True”}</td>
+</tr>
+<tr>
+<td style="text-align:left">ForceNoShadowCasting</td>
+<td style="text-align:left">控制使用该SubShader的物体是否会投射阴影</td>
+<td style="text-align:left">Tags{“ForceNoShadowCasting”=”True”}</td>
+</tr>
+<tr>
+<td style="text-align:left">IgnoreProjector</td>
+<td style="text-align:left">控制使用该SubShader的物体是否会受到Projector的影响，通常用于半透明物体</td>
+<td style="text-align:left">Tags{“Ignore’Projector”=”True”}</td>
+</tr>
+<tr>
+<td style="text-align:left">CanUseSpriteAtlas</td>
+<td style="text-align:left">当该SubShader是用于精灵(sprite)时，将该标签设为”False”</td>
+<td style="text-align:left">Tags{“CanUseSpriteAtlas”=”False”}</td>
+</tr>
+<tr>
+<td style="text-align:left">PreviewType</td>
+<td style="text-align:left">指明材质面板将如何预览该材质，默认情况下，材质将显示为一个球形，我们可以通过把该标签设置为”Plane”，”SkyBox”来改变预览模型</td>
+<td style="text-align:left">Tags{“PreviewType”=”Plane”}</td>
+</tr>
+</tbody>
+</table>
+<p>上诉Tags仅可以在SubShader中声明，而不可以在Pass中声明。Pass块中也有标签可以定义，但它们不同于SubShader的标签类型。</p>
+<blockquote>
+<p>Pass语义块</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Pass &#123;</span><br><span class="line">    [Name]</span><br><span class="line">    [Tags]</span><br><span class="line">    [RenderSetup]</span><br><span class="line">    <span class="comment">//other Code</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Name “MyPassName”</p>
+</blockquote>
+<p>通过这个名称，我们可以使用ShaderLab的UsePass命令来直接使用其他Unity Shader中的Pass。如：</p>
+<blockquote>
+<p>UsePass “MyShader/MYPASSNAME”</p>
+</blockquote>
+<p>这样可以提高代码复用率，但需要注意的是，Unity内部会把所有Pass名字转换为大写字母表示，因此使用UsePass命令时，必须使用大写形式的名字。</p>
+<p>其次，Pass也可以设置渲染状态(RenderSetup)与标签(Tags)，渲染状态可以使用SubShader中支持的渲染状态，还可以使用固定管线的着色器命令。</p>
+<p>Pass同样可以设置标签，但其标签不同于SubShader标签，Pass中支持的标签如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">标签类型</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">LightMode</td>
+<td style="text-align:left">定义该Pass在Unity渲染流水线中的角色</td>
+<td style="text-align:left">Tags{“LightMode”=”ForwardBase”}</td>
+</tr>
+<tr>
+<td style="text-align:left">RequireOptions</td>
+<td style="text-align:left">用于指定当满足某些条件时才渲染该Pass</td>
+<td style="text-align:left">Tags{“RequireOptions”=”SoftVegetation”}</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-4-Fallback"><a href="#3-4-Fallback" class="headerlink" title="3.4 Fallback"></a>3.4 Fallback</h4><p>紧跟在Unity Shader后面的是一个Fallback语句，它是最后一道保险，即如果所有的SubShader都不能用的话，就使用这个吧。语义如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Fallback <span class="string">"name"</span></span><br><span class="line"><span class="comment">// or</span></span><br><span class="line">Fallback off</span><br></pre></td></tr></table></figure></p>
+<p>综上所述，我们可以通过一个字符串来指明这个”最后的Shader”，当然你也可以”宁缺毋滥”——不能按我的意思渲染的话，那就不要管它了。但是啊，FallBack还会影响阴影的投射，在渲染阴影纹理时，Unity会在每个Unity Shader中寻找一个阴影投影的Pass，通常情况下我们不需要自己去实现一个这样的Pass，这是因为Fallback使用的内置Shader中往往包含了一个这样的通用Pass，因此为每个Unity Shader设置好Fallback还是十分重要的。</p>
+<h3 id="4-CG-HLSL"><a href="#4-CG-HLSL" class="headerlink" title="4.CG/HLSL"></a>4.CG/HLSL</h3><p>目前，我们基本理解了一个Unity Shader的结构了，Properties里面定义属性，在SubShader中写真正的着色器代码。</p>
+<p>好了，还记得Unity提供给我们的四种Unity Shader模板么？实际上那便对应了Unity Shader的两个不同类型：表面着色器(Surface Shader)与顶点/片元着色器(Vertex/Fragment Shader)</p>
+<p>我们来看一个非常简单的表面着色器代码(Surface Shader)<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Shader <span class="string">"Custom/Simple Surface Shader"</span>&#123;</span><br><span class="line">    SubShader&#123;</span><br><span class="line">        Tags&#123;<span class="string">"RenderType"</span>=<span class="string">"Opaque"</span>&#125;</span><br><span class="line">        CGPROGRAM</span><br><span class="line">        #Pragma surface surf Lambert</span><br><span class="line">        struct Input&#123;</span><br><span class="line">            float4 color : COLOR;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">surf</span> <span class="params">(Input IN,inout surfaceOutput o)</span></span>&#123;</span><br><span class="line">            o.Albedo = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ENDCG</span><br><span class="line">    &#125;</span><br><span class="line">    Fallback <span class="string">"Diffuse"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>再来看一个非常简单的顶点/片元着色器(Vertex/Fragment Shader)<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Shader <span class="string">"Custom/Simple VertexFragment Shader"</span>&#123;</span><br><span class="line">    SubShader&#123;</span><br><span class="line">        Pass&#123;</span><br><span class="line">            CGProGRAM</span><br><span class="line">            </span><br><span class="line">            <span class="meta">#<span class="meta-keyword">pragma</span> vertex vert</span></span><br><span class="line">            <span class="meta">#<span class="meta-keyword">pragma</span> fragment frag</span></span><br><span class="line"></span><br><span class="line">            float4 vert(float4 v : POSITION) : SV_POSITION&#123;</span><br><span class="line">                <span class="keyword">return</span> mul (UNITY_MATRIX_MVP, v);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            fixed4 frag() : SV_Target&#123;</span><br><span class="line">                <span class="keyword">return</span> fixed4(<span class="number">1.0</span>,<span class="number">0.0</span>,<span class="number">0.0</span>,<span class="number">1.0</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            ENDCG</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这就是Unity Shader的两种不同形式</p>
+<ul>
+<li>表面着色器(Surface Shader)是Unity自己创造的一种着色器代码类型，其所需要的代码量很少，Unity在背后做了很多工作，但渲染的代价比较大。其本质还是顶点/片元着色器，实际上就是顶点/片元着色器更高一层的抽象。它存在的价值在于为开发者处理了很多很多的光照细节，使得开发者不需要操心这些事情。</li>
+</ul>
+<blockquote>
+<p>表面着色器被定义在<strong>SubShader语义块(而非Pass语义块)</strong>中的CGPROGRAM与ENDCG之间，原因是表面着色器不关心开发者用多少个Pass，每个Pass如何渲染等问题，Unity会在背后做好这些事情。开发者所需要做的，就只是简单地告诉Surface Shader用”这个纹理”去填充颜色，用”这个法线纹理”去填充法线，使用光照模型等。具体细节不用关系。</p>
+</blockquote>
+<ul>
+<li>顶点/片元着色器(Vertex/Fragment Shader)则更加复杂，灵活性也更高。</li>
+</ul>
+<blockquote>
+<p>和表面着色器类似，顶点/片元着色器地代码也需要定义在CGPROGRAM与ENDCG之间，但不同地是，顶点/片元着色器是写在<strong>Pass语义块内(而非SubShader内)</strong>。因此，我们需要自己定义每个Pass需要使用地Shader代码，可以控制渲染的实现细节。</p>
+</blockquote>
+<p>那么CGPROGRAM与ENDCG之间是什么呢？首先我们要了解一下当下主流的几种Shader Language(SL):</p>
+<blockquote>
+<p>目前主流的Shader Language有3种语言</p>
+<ul>
+<li>GLSL：基于OpenGL的OpenGL Shading Language，简称GLSL</li>
+<li>HLSL: 基于DirectX的High Level Shading Language,简称HLSL</li>
+<li>Cg语言: NVIDIA公司的C for Graphic，简称Cg语言。</li>
+</ul>
+</blockquote>
+<p>因此，我们需要把CG/HLSL的语言嵌套在ShaderLab语言之中，值得注意的是，此处的CG/HLSL是Unity经过封装后的，但其语法和标准的CG/HLSL语法几乎一模一样，只有部分原生的函数和用法没有支持，感觉和当时的JavaScript和UnityScript感觉很类似。而且由于CG与DX9风格的HLSL从写法上而言几乎是同一种语言，因此在Unity里CG与HLSL是等价的。同样的，ShaderLab也支持内嵌GLSL的！<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CGPROGRAM</span><br><span class="line">    <span class="comment">// CG/HLSL代码</span></span><br><span class="line">    <span class="comment">// 支持平台：PC，Xbox360等等</span></span><br><span class="line">ENDCG</span><br><span class="line"></span><br><span class="line">GLSLPROGRAM</span><br><span class="line">    <span class="comment">// GLSL代码</span></span><br><span class="line">    <span class="comment">// 支持平台：Mac OS X，OpenGL ES2.0，Linux</span></span><br><span class="line">ENDGLSL</span><br></pre></td></tr></table></figure></p>
+<p>OK，现在基本的Unity Shader知识储备就差不多了，欢迎进入Shader的世界~</p>
+<h3 id="5-几大SL的爱恨情仇"><a href="#5-几大SL的爱恨情仇" class="headerlink" title="5.几大SL的爱恨情仇"></a>5.几大SL的爱恨情仇</h3><p>摘抄自《GPU Programming And Cg Language Primer 1rd Edition》 中文名《GPU编程与CG语言之阳春白雪下里巴人》</p>
+<blockquote>
+<p>Shader language目前有3种主流语言：基于OpenGL的GLSL（OpenGL Shading Language，也称为GLslang），基于Direct3D的HLSL（High Level Shading Language），还有NVIDIA公司的Cg （C for Graphic）语言。<br>GLSL与HLSL分别提基于OpenGL和Direct3D的接口，两者不能混用，事实上OpenGL和Direct3D一直都是冤家对头，曹操和刘备还有一段和平共处的甜美时光，但OpenGL和Direct3D各自的东家则从来都是争斗不休。争斗良久，既然没有分出胜负，那么必然是两败俱伤的局面。</p>
+</blockquote>
+<blockquote>
+<p>首先ATI系列显卡对OpenGL扩展支持不够，例如我在使用OSG（Open Scene Graphic）开源图形引擎时，由于该引擎完全基于OpenGL，导致其上编写的3D仿真程序在较老的显卡上常常出现纹理无法显示的问题。其次GLSL 的语法体系自成一家，而HLSL和Cg语言的语法基本相同，这就意味着，只要学习HLSL和Cg中的任何一种，就等同于学习了两种语言。不过OpenGL 毕竟图形API的曾经领袖，通常介绍OpenGL都会附加上一句“事实上的工业标准”，所以在其长期发展中积累下的用户群庞大，这些用户当然会选择 GLSL学习。此外，GLSL继承了OpenGL的良好移植性，一度在unix等操作系统上独领风骚（已是曾经的往事）。</p>
+</blockquote>
+<blockquote>
+<p>微软的HLSL移植性较差，在windows平台上可谓一家独大，可一出自己的院子（还好院子够大），就是落地凤凰不如鸡。这一点在很大程度上限制了 HLSL的推广和发展。目前HLSL多半都是用于游戏领域。我可以负责任的断言，在Shader language领域，HLSL可以凭借微软的老本成为割据一方的诸侯，但，决不可能成为君临天下的霸主。这和微软现在的局面很像，就是一个被带刺鲜花簇拥着的大财主，富贵已极，寸步难行。</p>
+</blockquote>
+<blockquote>
+<p>上面两个大佬打的很热烈，在这种情况下可以用一句俗话来形容，“鹬蚌相争，渔翁得利”。NVIDIA是现在当之无愧的显卡之王（尤其在AMD兼并ATI之后），是GPU编程理论的奠基者，GeForce系列显卡早已深入人心，它推出的Cg语言已经取得了巨大的成功，生生形成了三足鼎立之势。NVIDIA公司深通广告之道，目前最流行的GPU编程精粹一书就出自该公司，书中不但介绍了大量的GPU前沿知识，最重要的是大部分都用Cg语言实现。凭借该系列的书籍，NVIDIA不光确定了在青年学子间的学术地位，而且成功的推广了Cg语言。</p>
+</blockquote>
+<h3 id="6-Unity与Cg-HLSL"><a href="#6-Unity与Cg-HLSL" class="headerlink" title="6.Unity与Cg/HLSL"></a>6.Unity与Cg/HLSL</h3><blockquote>
+<p>Unity官方手册上讲Shader程序嵌入的小片段是用Cg/HLSL编写的，从“CGPROGRAM”开始，到“CGEND”结束。所以，Unity官方主要是用Cg/HLSL编写Shader程序片段。Unity官方手册也说明对于Cg/HLSL程序进行扩展也可以使用GLSL，不过Unity官方建议使用原生的GLSL进行编写和测试。如果不使用原生GLSL，你就需要知道你的平台必须是Mac OS X、OpenGL ES 2.0以上的移动设备或者是Linux。在一般情况下Unity会把Cg/HLSL交叉编译成优化过的GLSL。因此我们有多种选择，我们既可以考虑使用Cg/HLSL，也可以使用GLSL。不过由于Cg/HLSL更好的跨平台性，更倾向于使用Cg/HLSL编写Shader程序。</p>
+</blockquote>
+
+  </section>
+
+</article>
+
+<section class="read-more">
+           
+    
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">Newer Post</span>
+                <h2 class="post-list__post-title post-title"><a href="/2018/11/12/f_HorribleGameFeeling/" title="《鬼子母神之梦》">《鬼子母神之梦》</a></h2>
+                <p class="excerpt">
+                
+                今天在b站看完了Up主靖菌命做的一款恐怖游戏录播《鬼子母神之梦》，讲道理，很久没看到这么棒的游戏剧本了，相较于传统的RPG里面一些打魔王，拯救世界的游戏剧情，《鬼子母神之梦》剧情要短很多，但真的十分精彩，它完美融合怪诞传说与伦理，确实给人带来极大的震撼。(此部分含游戏剧情透露)《鬼子母神之梦》讲述的
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2018-11-11T16:00:00.000Z" class="post-list__meta--date date">2018-11-12</time> &#8226; <span class="post-list__meta--tags tags">于 
+  <a class="tag-link" href="/tags/游戏观后感/">游戏观后感</a>
+</span><a class="btn-border-small" href="/2018/11/12/f_HorribleGameFeeling/">继续阅读</a></div>
+                           
+            </div>
+        
+        
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">Older Post</span>
+                <h2 class="post-list__post-title post-title"><a href="/2018/11/09/b_Dota2_thinking/" title="由Dota2想到的">由Dota2想到的</a></h2>
+                <p class="excerpt">
+                
+                我从dota1就开始玩起，那是家里网慢，上不了对战平台，自己又不敢去网吧，只能天天打电脑解闷，高三毕业后和几个打的非常好的同学们一起玩，再到之后的dota2，dota真的承载了太多太多过去的回忆了。TI8 LGD不敌OG，中国失去了偶数年的荣耀之后，dota我就玩的少了很多，不过偶尔去打打10v10
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2018-11-08T16:00:00.000Z" class="post-list__meta--date date">2018-11-09</time> &#8226; <span class="post-list__meta--tags tags">于 
+  <a class="tag-link" href="/tags/游戏杂谈/">游戏杂谈</a>
+</span><a class="btn-border-small" href="/2018/11/09/b_Dota2_thinking/">继续阅读</a></div>
+                       
+            </div>
+        
+     
+   
+   
+  
+</section>
+
+  
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        &copy; 2019 nature
+       
+    </span>
+    <span class="footer__copyright">
+            
+         </span>
+       
+    
+    
+</footer>
+
+
+        </div>
+    </div>
+
+     
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-78918255-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?9cdad07c755fa23f6aced510c6760e87";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/poi.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>

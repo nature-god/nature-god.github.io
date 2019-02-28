@@ -73,8 +73,8 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-remote_theme: new-vno
-## theme: new-vno
+## remote_theme: new-vno
+theme: new-vno
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
